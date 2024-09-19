@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+
+{% block body %}
+    {% if user.is_authenticated %}
+        <div class="container-md container-fluid p-3 text-center">
+            <!-- Content here -->
+            <h1>Welcome {{ user.username }}, to the Company Count Application!</h1>
+            <div class="card text-bg-light mb-3 position-absolute top-30 start-50 translate-middle-x" style="max-width: 18rem;">
+                <div class="card-header">Web application using Django</div>
+                <div class="card-body">
+                    <p class="card-text">The application will allow users to LOGIN and FILTER the database table </p>
+                    <div class = "list-group list-group-flush">
+                        <a href="#" class="btn btn-primary mb-2">Upload CSV Data File</a>
+                        <p>OR</p>
+                        <a href="{% url 'account_reset_password' %}" class="btn btn-secondary mb-2">Reset Password</a>
+                        <a href="{% url 'account_logout' %}" class="btn btn-secondary mb-2">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="card text-bg-light mb-3 position-absolute top-10 start-50 translate-middle-x" style="max-width: 18rem;">
+            <div class="card-header">Please Log in or Sign up</div>
+            <div class="card-body">
+                <p class="card-text">To access all features of this application </p>
+                <div class = "list-group list-group-flush">
+                    <a href="{% url 'account_login' %}" class="btn btn-primary mb-2">Log In</a>
+                    <a href="{% url 'account_signup' %}" class="btn btn-primary mb-2">Sign Up</a>
+                    <p>OR</p>
+                    <a href="{% url 'account_reset_password' %}" class="btn btn-secondary mb-2">Reset Password</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{%endblock%}

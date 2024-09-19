@@ -1,0 +1,31 @@
+Company Count Application
+
+Web Application using Django (Python framework) named catalyst-count.
+Virtual environment used to manag Python 3.x packages.
+source env/bin/activate
+
+requirements.txt => pip list --format=freeze > requirements.txt
+Pages:
+    Login page - user authentication and session management using django-all-auth and also login through Google Oauth login.
+        1. user able to register, login and log out
+        2. user can register or login using Google account
+    
+    Upload Data Page - uploading CSV file using django-import-export and tablib modules with visual progress indicator
+                        adding CSV data to the model and to PostgreSQL
+        1. upload only CSV files to django model and transferred to PostgreSQL
+        2. progress bar to show the upload status
+        3. admin user can verify the data in Django admin platform or PostgreSQL pyAdmin platform
+
+    Query Builder Page - created filter using the model and module django-dynamic-datatb
+        1. data from django model displayed using pagination, filter and search options.
+        2. additionally filtered data can be downloaded in pdf or csv format
+
+    DRF API pages - Query to access each data item using API
+        1. shows django rest framework pages to access all data or particular ids of data elements.
+
+
+
+Resources:
+User auth ->
+documentation of django-allauth and this site
+https://learndjango.com/tutorials/django-allauth-tutorial#:~:text=django%2Dallauth%20is%20a%20popular,configurations%20that%20are%20easily%20accessed.
