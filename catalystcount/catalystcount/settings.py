@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     
+    #upload file
+    'import_export',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -86,8 +89,15 @@ WSGI_APPLICATION = 'catalystcount.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': BASE_DIR / 'db.sqlite3',
+        
+        #Adding PostgreSQL as the database
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dummy-test',
+        'USER':'lyn',
+        'PASSWORD':'lyn',
+        'HOST': 'localhost',
     }
 }
 
@@ -144,3 +154,26 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 LOGIN_REDIRECT_URL = "/"
+
+
+#parse CSV
+IMPORT_EXPORT_USE_TRANSACTIONS = True
+
+#files can be seen in media folder
+MEDIA_ROOT = BASE_DIR/'media'
+MEDIA_URL = '/media/'
+
+# Set the maximum file upload size to 1GB (in bytes)
+FILE_UPLOAD_MAX_MEMORY_SIZE = 1073741824  # 1GB
+
+# Increase request timeout for larger files (depending on deployment)
+DATA_UPLOAD_MAX_MEMORY_SIZE = 1073741824  # 1GB
+
+
+# Celery settings
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'

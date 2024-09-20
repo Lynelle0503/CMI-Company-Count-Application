@@ -29,3 +29,22 @@ Resources:
 User auth ->
 documentation of django-allauth and this site
 https://learndjango.com/tutorials/django-allauth-tutorial#:~:text=django%2Dallauth%20is%20a%20popular,configurations%20that%20are%20easily%20accessed.
+
+
+Parse CSV ->
+documentation of django-import-export 
+https://django-import-export.readthedocs.io/en/latest/installation.html
+and this video supporting it
+https://www.youtube.com/watch?v=EzVbCQv7YaQ
+
+
+
+
+
+
+
+
+
+Next Steps /Fallbacks:
+Upload a larger file
+dynamically pulling data from postgresql to update and query
