@@ -26,4 +26,5 @@ urlpatterns = [
     path('', include('myapp.urls')),
     path('', include('django_dyn_api.urls')),
     path('login/jwt/', view=obtain_auth_token),
+    path('', include('django_dyn_dt.urls')),
 ]

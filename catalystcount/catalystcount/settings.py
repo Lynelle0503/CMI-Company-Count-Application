@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os, inspect
+import django_dyn_dt
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -55,6 +56,9 @@ INSTALLED_APPS = [
     'django_dyn_api',
     'rest_framework',
     'rest_framework.authtoken',
+    
+    #query builder
+    'django_dyn_dt',
 ]
 
 MIDDLEWARE = [
@@ -70,10 +74,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'catalystcount.urls'
 
+TEMPLATE_DIR_DATATB = os.path.join(BASE_DIR, "django_dyn_dt/templates")
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR/'templates'],
+        'DIRS': [TEMPLATE_DIR_DATATB],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -143,6 +149,13 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+#Query Builder page
+DYN_DB_PKG_ROOT = os.path.dirname( inspect.getfile( django_dyn_dt ) ) # <-- NEW App
+
+STATICFILES_DIRS = (
+    os.path.join(DYN_DB_PKG_ROOT, "templates/static"),
+)
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -195,4 +208,10 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ],
+}
+
+#Query Builder
+DYNAMIC_DATATB = {
+    # SLUG -> Import_PATH 
+    'compdata'  : "myapp.models.CompanyData",
 }

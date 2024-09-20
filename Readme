@@ -19,6 +19,7 @@ Pages:
     Query Builder Page - created filter using the model and module django-dynamic-datatb
         1. data from django model displayed using pagination, filter and search options.
         2. additionally filtered data can be downloaded in pdf or csv format
+        3. data can be individually added as well
 
     DRF API pages - Query to access each data item using API
         1. shows django rest framework pages to access all data or particular ids of data elements.
@@ -36,6 +37,14 @@ documentation of django-import-export
 https://django-import-export.readthedocs.io/en/latest/installation.html
 and this video supporting it
 https://www.youtube.com/watch?v=EzVbCQv7YaQ
+
+
+Query Builder page ->
+documentation of django-dynamic-datatb module
+https://github.com/app-generator/django-dynamic-datatb
+video reference
+https://youtu.be/LlcpVfvIbMU
+view the data at http://127.0.0.1:8000/datatb/compdata/
 
 
 DRF API ->
