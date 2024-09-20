@@ -1,3 +1,4 @@
+# **Example README File**
 # Company Count Application (catalyst-count)
 A web application built using the Django framework (Python) for uploading, querying, and filtering company data with user authentication, CSV data import, and dynamic querying.
 
