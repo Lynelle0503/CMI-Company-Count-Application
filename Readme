@@ -32,11 +32,22 @@ https://learndjango.com/tutorials/django-allauth-tutorial#:~:text=django%2Dallau
 
 
 Parse CSV ->
-documentation of django-import-export 
+documentation of django-import-export
 https://django-import-export.readthedocs.io/en/latest/installation.html
 and this video supporting it
 https://www.youtube.com/watch?v=EzVbCQv7YaQ
 
+
+DRF API ->
+pip install django-dynamic-api
+documentation
+https://github.com/app-generator/django-dynamic-api
+youtube video supporting the docs
+https://www.youtube.com/watch?v=nPQMUafTrNY
+
+check data on http://127.0.0.1:8000/api/compdata/
+can query using the id http://127.0.0.1:8000/api/compdata/93/
+or other parameters http://127.0.0.1:8000/api/compdata/?name=ibm/
 
 
 

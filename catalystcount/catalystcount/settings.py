@@ -50,6 +50,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'myapp',
+    
+    #DRF api
+    'django_dyn_api',
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -177,3 +182,17 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
+
+#DRF API
+DYNAMIC_API = {
+    # pattern: 
+    # API_SLUG -> Import_PATH 
+    'compdata'  : "myapp.models.CompanyData",
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
