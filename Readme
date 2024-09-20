@@ -1,17 +1,20 @@
+
 # Company Count Application (catalyst-count)
 A web application built using the Django framework (Python) for uploading, querying, and filtering company data with user authentication, CSV data import, and dynamic querying.
 
+
 ### Table of Contents
 1. [Overview](#overview)
-2. Installation and Setup
-3. Features
-4. Pages and Functionalities
-5. Login Page
-6. Upload Data Page
-7. Query Builder Page
-8. DRF API Pages
-9. Resources
-10. Next Steps
+2. [Installation and Setup](#installation-and-setup)
+3. [Features](#features)
+4. [Pages and Functionalities](#pages-and-functionalities)
+5. [Login Page](#login-page)
+6. [Upload Data Page](#upload-data-page)
+7. [Query Builder Page](#query-builder-page)
+8. [DRF API Pages](#drf-api-pages)
+9. [Resources](#resources)
+10. [Next Steps](#next-steps)
+
 
 
 ## **Overview**
@@ -22,7 +25,10 @@ CSV file upload with visual progress indicators using django-import-export and t
 PostgreSQL database integration for storing and querying uploaded data.
 A query builder interface using django-dynamic-datatb for filtering and searching through uploaded data.
 Django Rest Framework (DRF) API to access company data programmatically.
-Installation and Setup
+
+
+
+## **Installation**
 
 Clone the Repository:
 ```
@@ -37,16 +43,15 @@ source env/bin/activate
 ```
 Install the required dependencies:
 
-```bash
-Copy code
+```
 pip install -r requirements.txt
 ```
-Database setup:
+
+## **Installation and Setup**
 
 Ensure PostgreSQL is installed and running.
 Create a PostgreSQL database and update the DATABASES configuration in settings.py.
-python
-Copy code
+```
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -57,69 +62,88 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-Run migrations:
+```
 
-bash
-Copy code
+Run migrations:
+```
 python manage.py makemigrations
 python manage.py migrate
+```
 Run the development server:
 
-bash
-Copy code
+```
 python manage.py runserver
+```
+
 Activate Google OAuth Login:
 
 Set up Google OAuth credentials and update your settings for social authentication via django-allauth.
-Features
-CSV Upload: Upload large CSV files (up to 1GB) with progress indicators.
-Background Processing: Asynchronous file upload to prevent blocking UI.
-Data Querying: Build custom queries and filters using a user-friendly interface.
-DRF API: Access company data via API endpoints.
-Google OAuth Authentication: Log in using Google accounts with django-allauth.
-Pages and Functionalities
-Login Page
-Implements user authentication and session management using django-allauth.
-Users can register, log in, and log out.
-Supports login via Google OAuth.
-Upload Data Page
-Upload CSV files via a visual progress indicator using django-import-export and tablib.
-Uploaded CSV data is stored in the PostgreSQL database.
+
+
+## **Features**
+- CSV Upload: Upload large CSV files (up to 1GB) with progress indicators.
+- Background Processing: Asynchronous file upload to prevent blocking UI.
+- Data Querying: Build custom queries and filters using a user-friendly interface.
+- DRF API: Access company data via API endpoints.
+- Google OAuth Authentication: Log in using Google accounts with django-allauth.
+
+
+
+## **Pages and Functionalities**
+
+- ### Login Page
+Implements user authentication and session management using ```django-allauth```,
+Users can register, log in, and log out, supports 3rd party login via _Google OAuth_
+
+- ### Upload Data Page
+Upload CSV files via a visual progress indicator using ```django-import-export``` and ```tablib```.
+Uploaded CSV data is stored in the _PostgreSQL_ database.
 Progress bar shows the status of the file upload.
-Admin can verify data through the Django Admin interface or PostgreSQL pgAdmin.
-Query Builder Page
-Uses django-dynamic-datatb to display data from the database.
-Provides filtering, searching, and pagination options for the data.
-Users can download the filtered data as CSV or PDF.
+Admin can verify data through the _Django Admin interface_ or _PostgreSQL pgAdmin_.
+
+- ### Query Builder Page
+Uses ```django-dynamic-datatb``` to display data from the database.
+Provides _filtering_, _searching_, and _pagination_ options for the data.
+Users can _download_ the filtered data as CSV or PDF.
 Additional feature to individually add data through the interface.
-DRF API Pages
-Uses Django Rest Framework (DRF) to expose API endpoints for querying data.
+
+- ### DRF API Pages
+Uses _Django Rest Framework (DRF)_, ```djangorestframework``` to expose API endpoints for querying data.
 View all company data or specific data elements by ID.
-Example: Access data by ID via http://127.0.0.1:8000/api/compdata/93/
-Example: Query by parameters like name via http://127.0.0.1:8000/api/compdata/?name=ibm
-Resources
-User Authentication:
 
-Django AllAuth documentation: Django AllAuth Tutorial
-CSV Parsing:
+Example: Access data by ID via ```http://127.0.0.1:8000/api/compdata/93/```
 
-Django Import Export documentation: Django Import Export
-Video reference: YouTube Tutorial
-Query Builder:
+Example: Query by parameters like name via ```http://127.0.0.1:8000/api/compdata/?name=ibm```
 
-Django Dynamic Datatable documentation: Dynamic DataTable
-Video reference: YouTube Video
-DRF API:
 
-Django Dynamic API documentation: Dynamic API
-Django Rest Framework documentation: DRF
-Video reference: YouTube Video
-Next Steps
-Upload Larger Files:
+##  Resources
 
-Test and handle larger CSV files.
-Dynamically pull data from PostgreSQL to update and query in real-time.
-Additional Features:
 
-Add more filter options for the Query Builder.
-Improve the UI for data interaction and querying.
+- User Authentication:
+
+Django AllAuth documentation: [Django AllAuth Tutorial](https://learndjango.com/tutorials/django-allauth-tutorial)
+
+
+- CSV Parsing:
+Django Import Export documentation: [Django Import Export](https://django-import-export.readthedocs.io/en/latest/installation.html)
+Video reference: [YouTube Tutorial](https://www.youtube.com/watch?v=EzVbCQv7YaQ)
+
+- Query Builder:
+
+Django Dynamic Datatable documentation: [Dynamic DataTable](https://github.com/app-generator/django-dynamic-datatb)
+Video reference: [YouTube Video](https://youtu.be/LlcpVfvIbMU)
+
+- DRF API:
+
+Django Dynamic API documentation: [Dynamic API](https://github.com/app-generator/django-dynamic-api)
+Django Rest Framework documentation: [DRF](https://www.django-rest-framework.org/)
+Video reference: [YouTube Video](https://www.youtube.com/watch?v=nPQMUafTrNY)
+
+
+
+## Next Steps
+
+- Ability to Upload Larger Files:
+- Test and handle larger CSV files.
+- Dynamically pull data from PostgreSQL to update and query in real-time.
+- Improve the UI for data interaction and querying.
