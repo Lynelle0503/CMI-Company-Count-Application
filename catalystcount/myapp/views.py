@@ -6,10 +6,16 @@ from .resources import CompanyDataResource
 from django.contrib import messages
 from django.http import HttpResponse
 import csv, io
+from django.db import connection
 
 # Create your views here.
 
 def uploadFile(request):
+    if CompanyData.objects.exists() or CompanyData.objects.count()>0:
+        modelExists = "true"
+    else:
+        modelExists = "false"
+        
     if request.method == 'POST':
         form = CSVUploadForm(request.POST, request.FILES)
         if form.is_valid():
@@ -20,7 +26,7 @@ def uploadFile(request):
             if not csv_file.name.endswith('csv'):
                 messages.info(request, 'Please upload a CSV file only')
                 form = CSVUploadForm()
-                return render(request, 'uploadPage.html', {'form': form})
+                return render(request, 'uploadPage.html', {'form': form, 'modelExists':modelExists})
             else:
                 messages.info(request, 'Uploading File...')
             imported_data = dataset.load(csv_file.read().decode('utf-8'), format='csv')
@@ -51,14 +57,22 @@ def uploadFile(request):
                 )
             messages.info(request, 'File is done uploading!')
             
-            return render(request, "uploadPage.html", {'form': form})
+            return render(request, "uploadPage.html", {'form': form, 'modelExists':modelExists})
         
     else:
         form = CSVUploadForm()
-    return render(request, "uploadPage.html", {'form': form})
+    return render(request, "uploadPage.html", {'form': form, 'modelExists':modelExists})
 
-    
-
-def qbPage(request):
-    return render(request, "QBuildPage.html")
-    
+def modelDelete(request):
+    #check if model has data
+    if CompanyData.objects.exists() or CompanyData.objects.count()>0:
+    #pop to confirm if new file needs to be added with the same data headers
+    #delete model data
+        CompanyData.objects.all().delete()
+        table_name = CompanyData._meta.db_table
+        with connection.cursor() as cursor:
+            cursor.execute(f"ALTER SEQUENCE {table_name}_id_seq RESTART WITH 1")
+        #sql = "DROP TABLE %s;" % (table_name, )
+    return render(request, "mdel.html")
+        
+ 

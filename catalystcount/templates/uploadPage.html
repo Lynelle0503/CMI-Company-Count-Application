@@ -22,7 +22,10 @@
                         <a class="nav-link active" href="/upload/">Upload Files</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/query-builder/">Query Builder</a>
+                        <a class="nav-link" href="/datatb/compdata/">Query Builder</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/api/compdata/">DRF API</a>
                     </li>
                 </ul>
             </div>
@@ -35,6 +38,27 @@
 {%endblock%}
 
 {% block body %}    
+    <!--Pop up-->
+    <div class="modal flush" id="myModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Modal content -->
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title p-3 fs-5" id="exampleModalLabel">CompanyData Model has data already</h1>
+                    <button type="button" class="close btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h7 class="p-3 text-primary mb-2">Do you want to delete the current data?</h7>
+                </div>
+                <div class="modal-footer p-3">
+                    <a href="/datatb/compdata/" class="btn btn-dark">Don't delete data!</a>
+                    <a href="{% url 'Delete_model' %}" class="btn btn-primary">Delete model data!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Upload part-->
     <h1 class="p-3">Please Upload File here</h1>
     <div class="card text-bg-light mb-3 position-absolute top-10 start-50 translate-middle-x" style="max-width: 40rem;">
         <form class="form-control" method="POST" enctype="multipart/form-data">
@@ -65,4 +89,27 @@
         {% endfor %}
     {% endif %}
 
+    <script>
+        window.onload = function() {
+            if ({{modelExists}}==true) {
+                // Display the modal
+                //console.log({{modelExists}}==true)
+                //console.log("do you see the pop up?");
+                document.getElementById("myModal").style.display = "block";
+            }
+            var modal = document.getElementById("myModal");
+            var span = document.getElementsByClassName("close")[0];
+            span.onclick = function() {
+                modal.style.display = "none";
+                // Optionally, set a flag in localStorage to avoid showing the modal again
+                localStorage.setItem("conditionMet", "true");
+            };
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                    localStorage.setItem("conditionMet", "true");
+                }
+            };
+        };
+    </script>
 {%endblock%}

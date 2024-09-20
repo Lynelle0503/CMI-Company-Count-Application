@@ -3,5 +3,5 @@ from .views import *
 
 urlpatterns = [
     path('upload/', uploadFile, name = "Upload_Page"),
-    path('query-builder/', qbPage, name = "Query_Builder_Page"),
+    path('model/delete/', modelDelete, name = "Delete_model"),
 ]

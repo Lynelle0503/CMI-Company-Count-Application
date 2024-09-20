@@ -51,6 +51,7 @@ DRF API ->
 pip install django-dynamic-api
 documentation
 https://github.com/app-generator/django-dynamic-api
+https://www.django-rest-framework.org/
 youtube video supporting the docs
 https://www.youtube.com/watch?v=nPQMUafTrNY
 
