@@ -1,0 +1,128 @@
+
+# Company Count Application (catalyst-count)
+A web application built using the Django framework (Python) for uploading, querying, and filtering company data with user authentication, CSV data import, and dynamic querying.
+
+
+
+## **Overview**
+The catalyst-count application provides the following key functionalities:
+
+User authentication via Django AllAuth, including Google OAuth login.
+CSV file upload with visual progress indicators using django-import-export and tablib.
+PostgreSQL database integration for storing and querying uploaded data.
+A query builder interface using django-dynamic-datatb for filtering and searching through uploaded data.
+Django Rest Framework (DRF) API to access company data programmatically.
+
+## **Installation**
+
+Clone the Repository:
+```
+git clone https://github.com/your-username/catalyst-count.git
+cd catalyst-count
+```
+
+Create and activate the virtual environment:
+```
+python3 -m venv env
+source env/bin/activate
+```
+Install the required dependencies:
+
+```
+pip install -r requirements.txt
+```
+
+## **Installation and Setup**
+
+Ensure PostgreSQL is installed and running.
+Create a PostgreSQL database and update the DATABASES configuration in settings.py.
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'your_db_name',
+        'USER': 'your_db_user',
+        'PASSWORD': 'your_password',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+```
+
+Run migrations:
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+Run the development server:
+
+```
+python manage.py runserver
+```
+
+Activate Google OAuth Login:
+
+Set up Google OAuth credentials and update your settings for social authentication via django-allauth.
+## **Features**
+- CSV Upload: Upload large CSV files (up to 1GB) with progress indicators.
+- Background Processing: Asynchronous file upload to prevent blocking UI.
+- Data Querying: Build custom queries and filters using a user-friendly interface.
+- DRF API: Access company data via API endpoints.
+- Google OAuth Authentication: Log in using Google accounts with django-allauth.
+
+
+
+## **Pages and Functionalities**
+
+- ### Login Page
+Implements user authentication and session management using ```django-allauth```,
+Users can register, log in, and log out, supports 3rd party login via _Google OAuth_
+
+- ### Upload Data Page
+Upload CSV files via a visual progress indicator using ```django-import-export``` and ```tablib```.
+Uploaded CSV data is stored in the _PostgreSQL_ database.
+Progress bar shows the status of the file upload.
+Admin can verify data through the _Django Admin interface_ or _PostgreSQL pgAdmin_.
+
+- ### Query Builder Page
+Uses ```django-dynamic-datatb``` to display data from the database.
+Provides _filtering_, _searching_, and _pagination_ options for the data.
+Users can _download_ the filtered data as CSV or PDF.
+Additional feature to individually add data through the interface.
+
+- ### DRF API Pages
+Uses _Django Rest Framework (DRF)_, ```djangorestframework``` to expose API endpoints for querying data.
+View all company data or specific data elements by ID.
+
+Example: Access data by ID via ```http://127.0.0.1:8000/api/compdata/93/```
+
+Example: Query by parameters like name via ```http://127.0.0.1:8000/api/compdata/?name=ibm```
+##  Resources
+
+
+- User Authentication:
+
+Django AllAuth documentation: [Django AllAuth Tutorial](https://learndjango.com/tutorials/django-allauth-tutorial)
+
+
+- CSV Parsing:
+Django Import Export documentation: [Django Import Export](https://django-import-export.readthedocs.io/en/latest/installation.html)
+Video reference: [YouTube Tutorial](https://www.youtube.com/watch?v=EzVbCQv7YaQ)
+
+- Query Builder:
+
+Django Dynamic Datatable documentation: [Dynamic DataTable](https://github.com/app-generator/django-dynamic-datatb)
+Video reference: [YouTube Video](https://youtu.be/LlcpVfvIbMU)
+
+- DRF API:
+
+Django Dynamic API documentation: [Dynamic API](https://github.com/app-generator/django-dynamic-api)
+Django Rest Framework documentation: [DRF](https://www.django-rest-framework.org/)
+Video reference: [YouTube Video](https://www.youtube.com/watch?v=nPQMUafTrNY)
+
+## Next Steps
+
+- Ability to Upload Larger Files:
+- Test and handle larger CSV files.
+- Dynamically pull data from PostgreSQL to update and query in real-time.
+- Improve the UI for data interaction and querying.
