@@ -1,71 +1,125 @@
-Company Count Application
+# Company Count Application (catalyst-count)
+A web application built using the Django framework (Python) for uploading, querying, and filtering company data with user authentication, CSV data import, and dynamic querying.
 
-Web Application using Django (Python framework) named catalyst-count.
-Virtual environment used to manag Python 3.x packages.
+### Table of Contents
+1. [Overview](#overview)
+2. Installation and Setup
+3. Features
+4. Pages and Functionalities
+5. Login Page
+6. Upload Data Page
+7. Query Builder Page
+8. DRF API Pages
+9. Resources
+10. Next Steps
+
+
+## **Overview**
+The catalyst-count application provides the following key functionalities:
+
+User authentication via Django AllAuth, including Google OAuth login.
+CSV file upload with visual progress indicators using django-import-export and tablib.
+PostgreSQL database integration for storing and querying uploaded data.
+A query builder interface using django-dynamic-datatb for filtering and searching through uploaded data.
+Django Rest Framework (DRF) API to access company data programmatically.
+Installation and Setup
+
+Clone the Repository:
+```
+git clone https://github.com/your-username/catalyst-count.git
+cd catalyst-count
+```
+
+Create and activate the virtual environment:
+```
+python3 -m venv env
 source env/bin/activate
+```
+Install the required dependencies:
 
-requirements.txt => pip list --format=freeze > requirements.txt
-Pages:
-    Login page - user authentication and session management using django-all-auth and also login through Google Oauth login.
-        1. user able to register, login and log out
-        2. user can register or login using Google account
-    
-    Upload Data Page - uploading CSV file using django-import-export and tablib modules with visual progress indicator
-                        adding CSV data to the model and to PostgreSQL
-        1. upload only CSV files to django model and transferred to PostgreSQL
-        2. progress bar to show the upload status
-        3. admin user can verify the data in Django admin platform or PostgreSQL pyAdmin platform
+```bash
+Copy code
+pip install -r requirements.txt
+```
+Database setup:
 
-    Query Builder Page - created filter using the model and module django-dynamic-datatb
-        1. data from django model displayed using pagination, filter and search options.
-        2. additionally filtered data can be downloaded in pdf or csv format
-        3. data can be individually added as well
+Ensure PostgreSQL is installed and running.
+Create a PostgreSQL database and update the DATABASES configuration in settings.py.
+python
+Copy code
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'your_db_name',
+        'USER': 'your_db_user',
+        'PASSWORD': 'your_password',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+Run migrations:
 
-    DRF API pages - Query to access each data item using API
-        1. shows django rest framework pages to access all data or particular ids of data elements.
+bash
+Copy code
+python manage.py makemigrations
+python manage.py migrate
+Run the development server:
 
+bash
+Copy code
+python manage.py runserver
+Activate Google OAuth Login:
 
+Set up Google OAuth credentials and update your settings for social authentication via django-allauth.
+Features
+CSV Upload: Upload large CSV files (up to 1GB) with progress indicators.
+Background Processing: Asynchronous file upload to prevent blocking UI.
+Data Querying: Build custom queries and filters using a user-friendly interface.
+DRF API: Access company data via API endpoints.
+Google OAuth Authentication: Log in using Google accounts with django-allauth.
+Pages and Functionalities
+Login Page
+Implements user authentication and session management using django-allauth.
+Users can register, log in, and log out.
+Supports login via Google OAuth.
+Upload Data Page
+Upload CSV files via a visual progress indicator using django-import-export and tablib.
+Uploaded CSV data is stored in the PostgreSQL database.
+Progress bar shows the status of the file upload.
+Admin can verify data through the Django Admin interface or PostgreSQL pgAdmin.
+Query Builder Page
+Uses django-dynamic-datatb to display data from the database.
+Provides filtering, searching, and pagination options for the data.
+Users can download the filtered data as CSV or PDF.
+Additional feature to individually add data through the interface.
+DRF API Pages
+Uses Django Rest Framework (DRF) to expose API endpoints for querying data.
+View all company data or specific data elements by ID.
+Example: Access data by ID via http://127.0.0.1:8000/api/compdata/93/
+Example: Query by parameters like name via http://127.0.0.1:8000/api/compdata/?name=ibm
+Resources
+User Authentication:
 
-Resources:
-User auth ->
-documentation of django-allauth and this site
-https://learndjango.com/tutorials/django-allauth-tutorial#:~:text=django%2Dallauth%20is%20a%20popular,configurations%20that%20are%20easily%20accessed.
+Django AllAuth documentation: Django AllAuth Tutorial
+CSV Parsing:
 
+Django Import Export documentation: Django Import Export
+Video reference: YouTube Tutorial
+Query Builder:
 
-Parse CSV ->
-documentation of django-import-export
-https://django-import-export.readthedocs.io/en/latest/installation.html
-and this video supporting it
-https://www.youtube.com/watch?v=EzVbCQv7YaQ
+Django Dynamic Datatable documentation: Dynamic DataTable
+Video reference: YouTube Video
+DRF API:
 
+Django Dynamic API documentation: Dynamic API
+Django Rest Framework documentation: DRF
+Video reference: YouTube Video
+Next Steps
+Upload Larger Files:
 
-Query Builder page ->
-documentation of django-dynamic-datatb module
-https://github.com/app-generator/django-dynamic-datatb
-video reference
-https://youtu.be/LlcpVfvIbMU
-view the data at http://127.0.0.1:8000/datatb/compdata/
+Test and handle larger CSV files.
+Dynamically pull data from PostgreSQL to update and query in real-time.
+Additional Features:
 
-
-DRF API ->
-pip install django-dynamic-api
-documentation
-https://github.com/app-generator/django-dynamic-api
-https://www.django-rest-framework.org/
-youtube video supporting the docs
-https://www.youtube.com/watch?v=nPQMUafTrNY
-
-check data on http://127.0.0.1:8000/api/compdata/
-can query using the id http://127.0.0.1:8000/api/compdata/93/
-or other parameters http://127.0.0.1:8000/api/compdata/?name=ibm/
-
-
-
-
-
-
-
-
-Next Steps /Fallbacks:
-Upload a larger file
-dynamically pulling data from postgresql to update and query
+Add more filter options for the Query Builder.
+Improve the UI for data interaction and querying.
