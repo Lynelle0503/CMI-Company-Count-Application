@@ -216,3 +216,4 @@ DYNAMIC_DATATB = {
     # SLUG -> Import_PATH 
     'compdata'  : "myapp.models.CompanyData",
 }
+SESSION_COOKIE_SECURE = True
